@@ -18,6 +18,7 @@ uint8_t max_emp =20;
 void displayMessages();
 void addEmployee(Emp_Recodes_t *employee, uint8_t *count);
 void displayAllEmployees(Emp_Recodes_t *employee, uint8_t *count);
+
 int main(void) {
 
 
@@ -31,6 +32,8 @@ int main(void) {
             case 1:
                 addEmployee(employees,&count);
             break;
+            case 2:
+                displayAllEmployees(employees,&count);
             default:
         }
     }
@@ -77,7 +80,17 @@ void addEmployee(Emp_Recodes_t *employee, uint8_t *count) {
 
 void displayAllEmployees(Emp_Recodes_t *employee, uint8_t *count) {
 
+    for(uint32_t i = 0; i<*count; i++) {
 
+        printf("Employee Name : %s\n", employee[i].name);
+        printf("Employee Position : %s\n", employee[i].position);
+        printf("Employee Salary : %0.3f\n", employee[i].salary);
+        printf("Employee ID : %d\n\n", employee[i].employee_id);
+
+
+
+
+    }
 
 }
 
