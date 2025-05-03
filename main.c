@@ -111,7 +111,7 @@ void addEmployee(Emp_Recodes_t *employee, uint8_t *count) {
     // Check if the employee ID already exists.
     for (uint8_t i = 0; i < *count; i++) {
         if (employee[i].employee_id == emp_id) {
-            printf("Employee ID Doesn't Exist\n");
+            printf("Employee ID Already Exist\n");
             return;
         }
     }
