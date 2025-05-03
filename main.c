@@ -18,6 +18,8 @@ uint8_t max_emp =20;
 void displayMessages();
 void addEmployee(Emp_Recodes_t *employee, uint8_t *count);
 void displayAllEmployees(Emp_Recodes_t *employee, uint8_t *count);
+void updateSalaryByID(Emp_Recodes_t *employee ,uint8_t *count);
+void deleteEmployeeById(Emp_Recodes_t *employee, uint8_t *count);
 
 int main(void) {
 
@@ -34,6 +36,13 @@ int main(void) {
             break;
             case 2:
                 displayAllEmployees(employees,&count);
+            break;
+            case 3:
+                deleteEmployeeById(employees,&count);
+            break;
+            case 4:
+                updateSalaryByID(employees,&count);
+            break;
             default:
         }
     }
@@ -77,6 +86,7 @@ void addEmployee(Emp_Recodes_t *employee, uint8_t *count) {
 
 
 }
+//****  Emp_Recodes_t *employee = Emp_Recodes_t employee[]
 
 void displayAllEmployees(Emp_Recodes_t *employee, uint8_t *count) {
 
@@ -93,6 +103,44 @@ void displayAllEmployees(Emp_Recodes_t *employee, uint8_t *count) {
     }
 
 }
+void updateSalaryByID(Emp_Recodes_t *employee ,uint8_t *count) {
+
+    uint32_t emp_id = 0;
+    scanf("%d",&emp_id);
+    for (uint32_t i=0; i<*count; i++) {
+
+        if(employee[i].employee_id == emp_id) {
+
+            printf("Update Salary(Employee - %d ):",employee[i].employee_id);
+            scanf("%f",&employee[i].salary);
+        }
+        else
+            printf("Employee Doesnt Exited");
+
+    }
+}
+
+void deleteEmployeeById(Emp_Recodes_t *employee, uint8_t *count) {
+
+    uint32_t emp_id = 0;
+    printf("Enter Employee Id: ");
+    scanf("%d",&emp_id);
+    for (uint32_t i=0; i<*count; i++) {
+
+        if(employee[i].employee_id == emp_id) {
+
+            for( uint32_t j=i; j<*count-1; j++ ) {
+
+                employee[j] = employee[j+1];
 
 
+            }
+        }
+        else
+            printf("Employee Doesnt Exited");
 
+    }
+
+    (*count)--;
+    printf("Employee Deleted");
+}
